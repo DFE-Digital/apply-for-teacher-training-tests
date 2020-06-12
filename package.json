@@ -4,5 +4,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "DFE-Digital <becomingateacher@digital.education.gov.uk>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "cypress": "^4.8.0"
+  }
 }
