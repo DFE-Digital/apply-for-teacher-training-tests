@@ -1,0 +1,8 @@
+{
+  "name": "apply-for-teacher-training-tests",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "DFE-Digital <becomingateacher@digital.education.gov.uk>",
+  "license": "MIT"
+}
