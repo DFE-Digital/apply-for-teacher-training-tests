@@ -6,6 +6,7 @@
   "author": "DFE-Digital <becomingateacher@digital.education.gov.uk>",
   "license": "MIT",
   "dependencies": {
-    "cypress": "^4.8.0"
+    "cypress": "^4.8.0",
+    "notifications-node-client": "^4.7.3"
   }
 }
