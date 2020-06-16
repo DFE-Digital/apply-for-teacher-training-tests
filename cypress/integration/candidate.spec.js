@@ -1,4 +1,4 @@
-const CANDIDATE_EMAIL = "theo+test1606@vararu.org";
+const CANDIDATE_EMAIL = Cypress.env("CANDIDATE_TEST_EMAIL");
 
 describe("Candidate", () => {
   it("can sign up successfully", () => {
