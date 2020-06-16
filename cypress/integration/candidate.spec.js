@@ -1,7 +1,7 @@
-describe("Candidate", () => {
-  let inbox = null;
+const CANDIDATE_EMAIL = "theo+test1606@vararu.org";
 
-  it("can sign up successfully", async () => {
+describe("Candidate", () => {
+  it("can sign up successfully", () => {
     givenIAmOnTheHomePage();
     whenIClickOnStartNow();
     whenIChooseToCreateAnAccount();
@@ -11,80 +11,80 @@ describe("Candidate", () => {
     andIClickContinue();
     thenICanCreateAnAccount();
 
-    // whenITypeInMyEmail();
-    // andAgreeToTermsAndConditions();
-    // andIClickContinue();
-    // thenIAmToldToCheckMyEmail();
-    //
-    // whenIClickTheLinkInMyEmail();
-    // thenIShouldBeOnTheApplicationPage();
+    whenITypeInMyEmail();
+    andAgreeToTermsAndConditions();
+    andIClickContinue();
+    thenIAmToldToCheckMyEmail();
+
+    whenIWaitForNotifyToSendAnEmail();
+    andIClickTheLinkInMyEmail();
+    thenIShouldBeSignedInSuccessfully();
   });
 });
 
-function givenIAmOnTheHomePage() {
+const givenIAmOnTheHomePage = () => {
   cy.visit("/");
   cy.contains("Start now");
-}
+};
 
-function whenIClickOnStartNow() {
+const whenIClickOnStartNow = () => {
   cy.contains("Start now").click();
-}
+};
 
-function whenIChooseToCreateAnAccount() {
+const whenIChooseToCreateAnAccount = () => {
   cy.contains("No, I need to create an account").click();
   cy.contains("Continue").click();
-}
+};
 
-function thenICanCheckMyEligibility() {
+const thenICanCheckMyEligibility = () => {
   cy.contains("Check we’re ready for you to use this service");
-}
+};
 
-function whenICheckThatIAmEligible() {
+const whenICheckThatIAmEligible = () => {
   cy.get(
     "#candidate-interface-eligibility-form-eligible-citizen-yes-field"
   ).click();
   cy.get(
     "#candidate-interface-eligibility-form-eligible-qualifications-yes-field"
   ).click();
-}
+};
 
-function andIClickContinue() {
+const andIClickContinue = () => {
   cy.contains("Continue").click();
-}
+};
 
-function thenICanCreateAnAccount() {
+const thenICanCreateAnAccount = () => {
   cy.contains("Create an Apply for teacher training account");
-}
+};
 
-function whenITypeInMyEmail() {
-  cy.newEmailAddress().then(newInbox => {
-    inbox = newInbox;
+const whenITypeInMyEmail = () => {
+  cy.get("#candidate-interface-sign-up-form-email-address-field").type(
+    CANDIDATE_EMAIL
+  );
+};
 
-    cy.get("#candidate-interface-sign-up-form-email-address-field").type(
-      inbox.emailAddress
-    );
-  });
-}
-
-function andAgreeToTermsAndConditions() {
+const andAgreeToTermsAndConditions = () => {
   cy.get(
     "#candidate-interface-sign-up-form-accept-ts-and-cs-true-field"
   ).click();
-}
+};
 
-function thenIAmToldToCheckMyEmail() {
+const thenIAmToldToCheckMyEmail = () => {
   cy.contains("Check your email");
-}
+};
 
-function whenIClickTheLinkInMyEmail() {
-  cy.getLatestEmail(() => inbox.id).then(email => {
-    const token = /token=([\d\w]{20})/.exec(email.body)[1];
-    expect(token).to.be.ok;
+const whenIWaitForNotifyToSendAnEmail = () => {
+  cy.wait(1000);
+};
 
-    cy.visit(`/candidate/authenticate?token=${token}`);
-  });
-}
+const andIClickTheLinkInMyEmail = () => {
+  cy.task("getSignInLinkFor", { emailAddress: CANDIDATE_EMAIL }).then(
+    signInLink => {
+      cy.visit(signInLink);
+    }
+  );
+};
 
-function thenIShouldBeOnTheApplicationPage() {
-  cy.contains("Your application");
-}
+const thenIShouldBeSignedInSuccessfully = () => {
+  cy.contains("We suggest you choose a course first");
+};
