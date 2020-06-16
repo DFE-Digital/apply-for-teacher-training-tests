@@ -22,7 +22,7 @@ describe("Candidate", () => {
 });
 
 function givenIAmOnTheHomePage() {
-  cy.visit("https://qa.apply-for-teacher-training.education.gov.uk/");
+  cy.visit("/");
   cy.contains("Start now");
 }
 
@@ -57,7 +57,7 @@ function thenICanCreateAnAccount() {
 }
 
 function whenITypeInMyEmail() {
-  cy.newEmailAddress().then((newInbox) => {
+  cy.newEmailAddress().then(newInbox => {
     inbox = newInbox;
 
     cy.get("#candidate-interface-sign-up-form-email-address-field").type(
@@ -77,13 +77,11 @@ function thenIAmToldToCheckMyEmail() {
 }
 
 function whenIClickTheLinkInMyEmail() {
-  cy.getLatestEmail(() => inbox.id).then((email) => {
+  cy.getLatestEmail(() => inbox.id).then(email => {
     const token = /token=([\d\w]{20})/.exec(email.body)[1];
     expect(token).to.be.ok;
 
-    cy.visit(
-      `https://qa.apply-for-teacher-training.education.gov.uk/candidate/authenticate?token=${token}`
-    );
+    cy.visit(`/candidate/authenticate?token=${token}`);
   });
 }
 
