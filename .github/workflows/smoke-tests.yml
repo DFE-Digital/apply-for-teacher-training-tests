@@ -6,6 +6,8 @@ on:
       - master
   schedule:
     - cron: "*/15 * * * *"
+  repository_dispatch:
+    types: deploy
 
 jobs:
   cypress-run:
