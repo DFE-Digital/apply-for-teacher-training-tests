@@ -8,3 +8,6 @@ jobs:
         uses: actions/checkout@v1
       - name: Cypress run
         uses: cypress-io/github-action@v1
+        env:
+          CYPRESS_CANDIDATE_TEST_EMAIL: ${{ secrets.CANDIDATE_TEST_EMAIL }}
+          CYPRESS_GOVUK_NOTIFY_API_KEY: ${{ secrets.GOVUK_NOTIFY_API_KEY }}
