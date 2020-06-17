@@ -1,5 +1,7 @@
 name: Smoke tests
+
 on: [push]
+
 jobs:
   cypress-run:
     runs-on: ubuntu-16.04
@@ -9,5 +11,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v1
         env:
+          CYPRESS_BASE_URL: https://qa.apply-for-teacher-training.education.gov.uk
           CYPRESS_CANDIDATE_TEST_EMAIL: ${{ secrets.CANDIDATE_TEST_EMAIL }}
           CYPRESS_GOVUK_NOTIFY_API_KEY: ${{ secrets.GOVUK_NOTIFY_API_KEY }}
