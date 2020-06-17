@@ -15,6 +15,7 @@ describe("Candidate", () => {
     andAgreeToTermsAndConditions();
     andIClickContinue();
     thenIAmToldToCheckMyEmail();
+
     whenIClickTheLinkInMyEmail();
     thenIShouldBeSignedInSuccessfully();
   });
@@ -22,7 +23,7 @@ describe("Candidate", () => {
 
 const givenIAmOnTheHomePage = () => {
   cy.visit("/");
-  cy.contains("Start now");
+  cy.contains("I'm breaking the tests intentionally");
 };
 
 const whenIClickOnStartNow = () => {
