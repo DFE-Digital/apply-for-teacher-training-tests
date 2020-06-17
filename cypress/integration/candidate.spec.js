@@ -15,9 +15,7 @@ describe("Candidate", () => {
     andAgreeToTermsAndConditions();
     andIClickContinue();
     thenIAmToldToCheckMyEmail();
-
-    whenIWaitForNotifyToSendAnEmail();
-    andIClickTheLinkInMyEmail();
+    whenIClickTheLinkInMyEmail();
     thenIShouldBeSignedInSuccessfully();
   });
 });
@@ -73,11 +71,7 @@ const thenIAmToldToCheckMyEmail = () => {
   cy.contains("Check your email");
 };
 
-const whenIWaitForNotifyToSendAnEmail = () => {
-  cy.wait(1000);
-};
-
-const andIClickTheLinkInMyEmail = () => {
+const whenIClickTheLinkInMyEmail = () => {
   cy.task("getSignInLinkFor", { emailAddress: CANDIDATE_EMAIL }).then(
     signInLink => {
       cy.visit(signInLink);
