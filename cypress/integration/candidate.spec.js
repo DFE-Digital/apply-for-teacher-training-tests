@@ -23,7 +23,7 @@ describe("Candidate", () => {
 
 const givenIAmOnTheHomePage = () => {
   cy.visit("/");
-  cy.contains("I'm breaking the tests intentionally");
+  cy.contains("Start now");
 };
 
 const whenIClickOnStartNow = () => {
