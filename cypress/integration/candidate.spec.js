@@ -23,7 +23,7 @@ describe("Candidate", () => {
 
 const givenIAmOnTheHomePage = () => {
   cy.visit("/");
-  cy.contains("Start now");
+  cy.contains("Start noww");
 };
 
 const whenIClickOnStartNow = () => {
