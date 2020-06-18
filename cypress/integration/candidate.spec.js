@@ -1,6 +1,7 @@
+const ENVIRONMENT = Cypress.env("ENVIRONMENT") || 'Unknown';
 const CANDIDATE_EMAIL = Cypress.env("CANDIDATE_TEST_EMAIL");
 
-describe("Candidate", () => {
+describe(`[${ENVIRONMENT}] Candidate`, () => {
   it("can sign up successfully", () => {
     givenIAmOnTheHomePage();
     whenIClickOnStartNow();

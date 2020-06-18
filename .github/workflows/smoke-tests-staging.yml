@@ -20,6 +20,7 @@ jobs:
         with:
           record: true
         env:
+          CYPRESS_ENVIRONMENT: Staging
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_BASE_URL: https://staging.apply-for-teacher-training.education.gov.uk
           CYPRESS_CANDIDATE_TEST_EMAIL: ${{ secrets.CANDIDATE_TEST_EMAIL }}
