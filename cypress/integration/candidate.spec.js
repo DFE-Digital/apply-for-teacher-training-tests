@@ -23,7 +23,7 @@ describe(`[${ENVIRONMENT}] Candidate`, () => {
 });
 
 const givenIAmOnTheHomePage = () => {
-  cy.visit("/");
+  cy.visit("/candidate");
   cy.contains("Start now");
 };
 
