@@ -999,10 +999,10 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-notifications-node-client@^4.7.3:
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/notifications-node-client/-/notifications-node-client-4.7.3.tgz#973399768086e40735248f8e8634b461ee84169e"
-  integrity sha512-QWqFmCznBTGkQvKXGUuCmdjznwMRLyASrQieVfzCa3E4RmYLAvy97Bo/2EQlkgXgCJL2I7AO9KEkI7HE8xGNkQ==
+notifications-node-client@^4.8.0:
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/notifications-node-client/-/notifications-node-client-4.8.0.tgz#107448eabcb04b05bdec7bdb16635a6e67f7aea7"
+  integrity sha512-CNMvEd8xAVDwpsO62dsk0QiGdjkcZK/pUEEEdqE8zCbfWtcqqaSIVBUl/VFwebZh7BX8tLkwfyjnnIlwUHWspg==
   dependencies:
     jsonwebtoken "8.2.1"
     request "2.87.0"
