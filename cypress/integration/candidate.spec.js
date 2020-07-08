@@ -1,9 +1,28 @@
-const ENVIRONMENT = Cypress.env("ENVIRONMENT") || 'Unknown';
+const ENVIRONMENT = Cypress.env("ENVIRONMENT") || "Unknown";
 const CANDIDATE_EMAIL = Cypress.env("CANDIDATE_TEST_EMAIL");
+
+function terminalLog(violations) {
+  const vl = violations.length;
+  const xA11yViolations = `${vl} accessibility violation${vl === 1 ? "" : "s"}`;
+  const wereDetected = ` ${vl === 1 ? "was" : "were"} detected`;
+  cy.task("log", xA11yViolations + wereDetected);
+
+  const violationData = violations.map(
+    ({ id, impact, description, nodes }) => ({
+      id,
+      impact,
+      description,
+      nodes: nodes.length,
+    })
+  );
+
+  cy.task("table", violationData);
+}
 
 describe(`[${ENVIRONMENT}] Candidate`, () => {
   it("can sign up successfully", () => {
     givenIAmOnTheHomePage();
+    andItIsAccessible();
     whenIClickOnStartNow();
     whenIChooseToCreateAnAccount();
     thenICanCheckMyEligibility();
@@ -25,6 +44,17 @@ describe(`[${ENVIRONMENT}] Candidate`, () => {
 const givenIAmOnTheHomePage = () => {
   cy.visit("/candidate");
   cy.contains("Start now");
+};
+
+const andItIsAccessible = () => {
+  cy.injectAxe();
+  cy.checkA11y(
+    null,
+    {
+      includedImpacts: ["critical"],
+    },
+    terminalLog
+  );
 };
 
 const whenIClickOnStartNow = () => {
@@ -75,7 +105,7 @@ const thenIAmToldToCheckMyEmail = () => {
 
 const whenIClickTheLinkInMyEmail = () => {
   cy.task("getSignInLinkFor", { emailAddress: CANDIDATE_EMAIL }).then(
-    signInLink => {
+    (signInLink) => {
       cy.visit(signInLink);
     }
   );
