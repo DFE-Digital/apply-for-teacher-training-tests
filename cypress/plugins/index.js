@@ -71,6 +71,18 @@ module.exports = (on, config) => {
           reject(err);
         }
       });
+    },
+
+    log(message) {
+      console.log(message);
+
+      return null;
+    },
+
+    table(message) {
+      console.table(message);
+
+      return null;
     }
   });
 };
