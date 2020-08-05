@@ -1,5 +1,7 @@
 const ENVIRONMENT = Cypress.env("ENVIRONMENT") || "Unknown";
 
+const COMPONENTS = cypress.get("li a").href
+
 function terminalLog(violations) {
   const vl = violations.length;
   const xA11yViolations = `${vl} accessibility violation${vl === 1 ? "" : "s"}`;
@@ -21,7 +23,7 @@ function terminalLog(violations) {
 describe(`[${ENVIRONMENT}] Components`, () => {
   it("are accessible", () => {
     givenIAmOnTheComponentReviewPage();
-    andIClickOnTheFirstComponent();
+    andIClickOnEachComponent();
     thenItShouldBeAccessible();
   });
 });
@@ -31,8 +33,8 @@ const givenIAmOnTheComponentReviewPage = () => {
   cy.contains("Candidate Interface/Application Status Tag Component");
 };
 
-const andIClickOnTheFirstComponent = () => {
-  cy.contains("application_complete").click();
+const andIClickOnEachComponent = () => {
+  COMPONENTS.forEach(element => cy.contains(element).click() + thenItShouldBeAccessible() + givenIAmOnTheComponentReviewPage());
 };
 
 const thenItShouldBeAccessible = () => {
