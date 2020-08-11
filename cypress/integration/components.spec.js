@@ -1,13 +1,5 @@
 const ENVIRONMENT = Cypress.env("ENVIRONMENT") || "Unknown";
 
-<<<<<<< HEAD
-const newarray = document.querySelectorAll("li a")
-
-const hrefs = Array.from(newarray).map(x => x.href)
-=======
-const COMPONENTS = cypress.get("li a").href
->>>>>>> e7983f5681ceeca7c35158e7c88d077739f802d8
-
 function terminalLog(violations) {
   const vl = violations.length;
   const xA11yViolations = `${vl} accessibility violation${vl === 1 ? "" : "s"}`;
@@ -29,8 +21,7 @@ function terminalLog(violations) {
 describe(`[${ENVIRONMENT}] Components`, () => {
   it("are accessible", () => {
     givenIAmOnTheComponentReviewPage();
-    andIClickOnEachComponent();
-    thenItShouldBeAccessible();
+    thenEachComponentShouldBeAccessible();
   });
 });
 
@@ -39,12 +30,14 @@ const givenIAmOnTheComponentReviewPage = () => {
   cy.contains("Candidate Interface/Application Status Tag Component");
 };
 
-const andIClickOnEachComponent = () => {
-<<<<<<< HEAD
-  HREFS.forEach(element => cy.contains(element).click() + thenItShouldBeAccessible() + givenIAmOnTheComponentReviewPage());
-=======
-  COMPONENTS.forEach(element => cy.contains(element).click() + thenItShouldBeAccessible() + givenIAmOnTheComponentReviewPage());
->>>>>>> e7983f5681ceeca7c35158e7c88d077739f802d8
+const thenEachComponentShouldBeAccessible = () => {
+  cy.get("li a").then((tags) => {
+    const hrefs = Array.from(tags).map((t) => t.href);
+    hrefs.forEach((href) => {
+      cy.visit(href);
+      thenItShouldBeAccessible();
+    });
+  });
 };
 
 const thenItShouldBeAccessible = () => {
