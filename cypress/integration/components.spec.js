@@ -1,6 +1,8 @@
 const ENVIRONMENT = Cypress.env("ENVIRONMENT") || "Unknown";
 
-const COMPONENTS = cypress.get("li a").href
+const newarray = document.querySelectorAll("li a")
+
+const hrefs = Array.from(newarray).map(x => x.href)
 
 function terminalLog(violations) {
   const vl = violations.length;
@@ -34,7 +36,7 @@ const givenIAmOnTheComponentReviewPage = () => {
 };
 
 const andIClickOnEachComponent = () => {
-  COMPONENTS.forEach(element => cy.contains(element).click() + thenItShouldBeAccessible() + givenIAmOnTheComponentReviewPage());
+  HREFS.forEach(element => cy.contains(element).click() + thenItShouldBeAccessible() + givenIAmOnTheComponentReviewPage());
 };
 
 const thenItShouldBeAccessible = () => {
