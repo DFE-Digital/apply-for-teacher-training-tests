@@ -1,24 +1,6 @@
 const ENVIRONMENT = Cypress.env("ENVIRONMENT") || "Unknown";
 const CANDIDATE_EMAIL = Cypress.env("CANDIDATE_TEST_EMAIL");
 
-function terminalLog(violations) {
-  const vl = violations.length;
-  const xA11yViolations = `${vl} accessibility violation${vl === 1 ? "" : "s"}`;
-  const wereDetected = ` ${vl === 1 ? "was" : "were"} detected`;
-  cy.task("log", xA11yViolations + wereDetected);
-
-  const violationData = violations.map(
-    ({ id, impact, description, nodes }) => ({
-      id,
-      impact,
-      description,
-      nodes: nodes.length,
-    })
-  );
-
-  cy.task("table", violationData);
-}
-
 describe(`[${ENVIRONMENT}] Candidate`, () => {
   it("can sign up successfully", () => {
     givenIAmOnTheHomePage();
@@ -47,14 +29,7 @@ const givenIAmOnTheHomePage = () => {
 };
 
 const andItIsAccessible = () => {
-  cy.injectAxe();
-  cy.checkA11y(
-    null,
-    {
-      includedImpacts: ["critical"],
-    },
-    terminalLog
-  );
+  cy.runAxe();
 };
 
 const whenIClickOnStartNow = () => {
