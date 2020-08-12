@@ -17,8 +17,7 @@ jobs:
         uses: cypress-io/github-action@v1
         with:
           record: true
-          spec:
-            - cypress/integration/candidate.spec.js
+          spec: cypress/integration/candidate.spec.js
         env:
           CYPRESS_ENVIRONMENT: Production
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
