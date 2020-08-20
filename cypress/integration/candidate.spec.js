@@ -19,6 +19,7 @@ describe(`[${ENVIRONMENT}] Candidate`, () => {
     thenIAmToldToCheckMyEmail();
 
     whenIClickTheLinkInMyEmail();
+    andIClickContinue();
     thenIShouldBeSignedInSuccessfully();
   });
 });
