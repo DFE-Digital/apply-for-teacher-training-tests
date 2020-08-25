@@ -7,7 +7,8 @@ describe(`[${ENVIRONMENT}] Candidate`, () => {
     andItIsAccessible();
     whenIClickOnStartNow();
     whenIChooseToCreateAnAccount();
-    thenICanCheckMyEligibility();
+    if (isBetweenCycles()) return thenIShouldBeToldThatApplicationsAreClosed();
+    else thenICanCheckMyEligibility();
 
     whenICheckThatIAmEligible();
     andIClickContinue();
@@ -89,4 +90,16 @@ const whenIClickTheLinkInMyEmail = () => {
 
 const thenIShouldBeSignedInSuccessfully = () => {
   cy.contains("We suggest you choose a course first");
+};
+
+const isBetweenCycles = () => {
+  const endOfCycle = +new Date(2020, 7, 24);
+  const startOfNewCycle = +new Date(2020, 9, 13);
+  const currentTime = +new Date();
+
+  return currentTime > endOfCycle && currentTime < startOfNewCycle;
+};
+
+const thenIShouldBeToldThatApplicationsAreClosed = () => {
+  cy.contains("Applications for courses starting this year have closed.");
 };
