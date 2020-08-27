@@ -7,7 +7,8 @@ describe(`[${ENVIRONMENT}] Candidate`, () => {
     andItIsAccessible();
     whenIClickOnStartNow();
     whenIChooseToCreateAnAccount();
-    if (isBetweenCycles()) return thenIShouldBeToldThatApplicationsAreClosed();
+    if (isBetweenCycles() && !isSandbox())
+      return thenIShouldBeToldThatApplicationsAreClosed();
     else thenICanCheckMyEligibility();
 
     whenICheckThatIAmEligible();
@@ -103,3 +104,5 @@ const isBetweenCycles = () => {
 const thenIShouldBeToldThatApplicationsAreClosed = () => {
   cy.contains("Applications for courses starting this year have closed.");
 };
+
+const isSandbox = () => ENVIRONMENT === "Sandbox";
