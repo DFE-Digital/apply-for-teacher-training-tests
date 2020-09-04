@@ -83,14 +83,14 @@ const thenIAmToldToCheckMyEmail = () => {
 
 const whenIClickTheLinkInMyEmail = () => {
   cy.task("getSignInLinkFor", { emailAddress: CANDIDATE_EMAIL }).then(
-    (signInLink) => {
+    signInLink => {
       cy.visit(signInLink);
     }
   );
 };
 
 const thenIShouldBeSignedInSuccessfully = () => {
-  cy.contains("We suggest you choose a course first");
+  cy.contains("Choose a course first");
 };
 
 const isBetweenCycles = () => {
