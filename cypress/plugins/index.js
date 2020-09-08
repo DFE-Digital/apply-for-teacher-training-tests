@@ -41,7 +41,7 @@ module.exports = (on, config) => {
 
   const getNotifyEmailFor = async (emailAddress, retries = 3) => {
     const response = await notifyClient.getNotifications("email");
-    const notifications = response.toJSON().body.notifications;
+    const notifications = response.data.notifications;
     let notifyEmail = notifications.find(signInEmailFor(emailAddress));
 
     if (!notifyEmail && retries > 0) {
