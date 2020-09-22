@@ -45,9 +45,11 @@ function terminalLog(violations) {
 Cypress.Commands.add("runAxe", () => {
   cy.injectAxe();
   cy.checkA11y(
-    null,
     {
-      includedImpacts: ["critical"],
+      exclude: [["#navigation", "ul"]],
+    },
+    {
+      includedImpacts: ["critical", "serious"],
     },
     terminalLog
   );
