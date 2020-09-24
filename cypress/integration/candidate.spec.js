@@ -94,7 +94,7 @@ const thenIShouldBeSignedInSuccessfully = () => {
 };
 
 const isBetweenCycles = () => {
-  const endOfCycle = +new Date(2020, 7, 24);
+  const endOfCycle = +new Date(2020, 7, 25);
   const startOfNewCycle = +new Date(2020, 9, 13);
   const currentTime = +new Date();
 
