@@ -3,7 +3,7 @@ const ENVIRONMENT = Cypress.env("ENVIRONMENT") || "Unknown";
 describe(`[${ENVIRONMENT}] Components`, () => {
   it("are accessible", () => {
     givenIAmOnTheComponentReviewPage();
-    // thenEachComponentShouldBeAccessible();
+    thenEachComponentShouldBeAccessible();
   });
 });
 
