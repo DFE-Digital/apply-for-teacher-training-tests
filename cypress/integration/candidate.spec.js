@@ -7,12 +7,9 @@ describe(`[${ENVIRONMENT}] Candidate`, () => {
     andItIsAccessible();
     whenIClickOnStartNow();
     whenIChooseToCreateAnAccount();
-    if (isBetweenCycles() && !isSandbox())
+    if (isBetweenCycles()) {
       return thenIShouldBeToldThatApplicationsAreClosed();
-    else thenICanCheckMyEligibility();
-
-    whenICheckThatIAmEligible();
-    andIClickContinue();
+    }
     thenICanCreateAnAccount();
 
     whenITypeInMyEmail();
@@ -42,19 +39,6 @@ const whenIClickOnStartNow = () => {
 const whenIChooseToCreateAnAccount = () => {
   cy.contains("No, I need to create an account").click();
   cy.contains("Continue").click();
-};
-
-const thenICanCheckMyEligibility = () => {
-  cy.contains("Check we’re ready for you to use this service");
-};
-
-const whenICheckThatIAmEligible = () => {
-  cy.get(
-    "#candidate-interface-eligibility-form-eligible-citizen-yes-field"
-  ).click();
-  cy.get(
-    "#candidate-interface-eligibility-form-eligible-qualifications-yes-field"
-  ).click();
 };
 
 const andIClickContinue = () => {
@@ -90,7 +74,7 @@ const whenIClickTheLinkInMyEmail = () => {
 };
 
 const thenIShouldBeSignedInSuccessfully = () => {
-  cy.contains("Choose a course first");
+  cy.contains("Do you want to continue applying?");
 };
 
 const isBetweenCycles = () => {
