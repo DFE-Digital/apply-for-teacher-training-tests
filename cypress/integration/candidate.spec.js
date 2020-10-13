@@ -7,7 +7,7 @@ describe(`[${ENVIRONMENT}] Candidate`, () => {
     andItIsAccessible();
     whenIClickOnStartNow();
     whenIChooseToCreateAnAccount();
-    if (isBetweenCycles() && !isSandbox()) {
+    if (isBetweenCycles()) {
       return thenIShouldBeToldThatApplicationsAreClosed();
     }
     thenICanCreateAnAccount();
@@ -74,7 +74,7 @@ const whenIClickTheLinkInMyEmail = () => {
 };
 
 const thenIShouldBeSignedInSuccessfully = () => {
-  cy.contains("Choose a course first");
+  cy.contains("Do you want to continue applying?");
 };
 
 const isBetweenCycles = () => {
