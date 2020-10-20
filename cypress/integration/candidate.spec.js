@@ -4,8 +4,7 @@ const CANDIDATE_EMAIL = Cypress.env("CANDIDATE_TEST_EMAIL");
 describe(`[${ENVIRONMENT}] Candidate`, () => {
   it("can sign up successfully", () => {
     givenIAmOnTheHomePage();
-    andItIsAccessible();
-    whenIClickOnStartNow();
+    // andItIsAccessible();
     whenIChooseToCreateAnAccount();
     if (isBetweenCycles()) {
       return thenIShouldBeToldThatApplicationsAreClosed();
@@ -24,16 +23,12 @@ describe(`[${ENVIRONMENT}] Candidate`, () => {
 });
 
 const givenIAmOnTheHomePage = () => {
-  cy.visit("/candidate");
-  cy.contains("Start now");
+  cy.visit("/candidate/account");
+  cy.contains("Create an account or sign in");
 };
 
 const andItIsAccessible = () => {
   cy.runAxe();
-};
-
-const whenIClickOnStartNow = () => {
-  cy.contains("Start now").click();
 };
 
 const whenIChooseToCreateAnAccount = () => {
