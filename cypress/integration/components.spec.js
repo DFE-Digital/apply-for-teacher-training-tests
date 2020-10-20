@@ -1,6 +1,6 @@
 const ENVIRONMENT = Cypress.env("ENVIRONMENT") || "Unknown";
 
-describe(`[${ENVIRONMENT}] Components`, () => {
+describe.skip(`[${ENVIRONMENT}] Components`, () => {
   it("are accessible", () => {
     givenIAmOnTheComponentReviewPage();
     thenEachComponentShouldBeAccessible();
