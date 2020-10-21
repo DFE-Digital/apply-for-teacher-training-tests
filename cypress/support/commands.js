@@ -44,6 +44,15 @@ function terminalLog(violations) {
 
 Cypress.Commands.add("runAxe", () => {
   cy.injectAxe();
+  cy.configureAxe({
+    // https://github.com/alphagov/govuk-frontend/issues/979
+    // This issue is present on forms with conditional checkboxes, such as the
+    // candidate sign up form. Axe will complain that these inputs shouldn't
+    // have an aria-expanded attribute. However, the design system currently
+    // still uses this attribute, as it does help on devices such as NVDA.
+    // Disable the rule to prevent Axe from bringing it up.
+    rules: [{ id: 'aria-allowed-attr', enabled: false }],
+  })
   cy.checkA11y(
     {
       exclude: [["#navigation", "ul"]],
