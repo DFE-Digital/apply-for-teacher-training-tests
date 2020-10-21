@@ -4,7 +4,7 @@ const CANDIDATE_EMAIL = Cypress.env("CANDIDATE_TEST_EMAIL");
 describe(`[${ENVIRONMENT}] Candidate`, () => {
   it("can sign up successfully", () => {
     givenIAmOnTheHomePage();
-    // andItIsAccessible();
+    andItIsAccessible();
     whenIChooseToCreateAnAccount();
     if (isBetweenCycles()) {
       return thenIShouldBeToldThatApplicationsAreClosed();
