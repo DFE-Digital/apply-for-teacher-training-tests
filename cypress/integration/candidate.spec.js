@@ -69,7 +69,7 @@ const whenIClickTheLinkInMyEmail = () => {
 };
 
 const thenIShouldBeSignedInSuccessfully = () => {
-  cy.contains("Your application");
+  cy.contains("Do you want to continue applying?");
 };
 
 const isBetweenCycles = () => {
