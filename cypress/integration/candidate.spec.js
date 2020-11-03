@@ -1,7 +1,7 @@
 const ENVIRONMENT = Cypress.env("ENVIRONMENT") || "Unknown";
 const CANDIDATE_EMAIL = Cypress.env("CANDIDATE_TEST_EMAIL");
 
-describe.skip(`[${ENVIRONMENT}] Candidate`, () => {
+describe(`[${ENVIRONMENT}] Candidate`, () => {
   it("can sign up successfully", () => {
     givenIAmOnTheHomePage();
     andItIsAccessible();
@@ -69,7 +69,7 @@ const whenIClickTheLinkInMyEmail = () => {
 };
 
 const thenIShouldBeSignedInSuccessfully = () => {
-  cy.contains("Do you want to continue applying?");
+  cy.contains("Sign out");
 };
 
 const isBetweenCycles = () => {
