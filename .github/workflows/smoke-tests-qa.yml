@@ -21,8 +21,16 @@ jobs:
           spec: cypress/integration/candidate.spec.js,cypress/integration/components.spec.js
         env:
           CYPRESS_ENVIRONMENT: QA
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_BASE_URL: https://qa.apply-for-teacher-training.service.gov.uk
           CYPRESS_CANDIDATE_TEST_EMAIL: ${{ secrets.CANDIDATE_TEST_EMAIL }}
           CYPRESS_GOVUK_NOTIFY_API_KEY: ${{ secrets.GOVUK_NOTIFY_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Slack Notification
+        if: failure()
+        uses: rtCamp/action-slack-notify@master
+        env:
+          SLACK_CHANNEL: 'twd_apply_tech'
+          SLACK_COLOR: '#c0392b'
+          SLACK_ICON_EMOJI: ':sad-beaver:'
+          SLACK_MESSAGE: 'Smoke tests failed to run :sadparrot:'
+          SLACK_TITLE: 'Failure: ${{ github.workflow }}'
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
