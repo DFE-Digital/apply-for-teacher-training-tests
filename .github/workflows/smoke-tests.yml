@@ -55,7 +55,7 @@ jobs:
         if: failure()
         uses: rtCamp/action-slack-notify@master
         env:
-          SLACK_CHANNEL: 'twd_apply_tech'
+          SLACK_CHANNEL: 'twd_apply_test'
           SLACK_COLOR: '#c0392b'
           SLACK_ICON_EMOJI: ':sad-beaver:'
           SLACK_MESSAGE: 'Smoke tests failed to run :sadparrot:'
