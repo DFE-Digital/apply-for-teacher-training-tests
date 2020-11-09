@@ -84,4 +84,4 @@ const thenIShouldBeToldThatApplicationsAreClosed = () => {
   cy.contains("Applications for courses starting this year have closed.");
 };
 
-const isSandbox = () => ENVIRONMENT === "Sandbox";
+const isSandbox = () => ENVIRONMENT.toUpperCase() === "SANDBOX";
