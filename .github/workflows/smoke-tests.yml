@@ -12,7 +12,7 @@ on:
 
 jobs:
   set-matrix:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     outputs:
       environments: ${{ steps.select-environments.outputs.environments }}
     steps:
@@ -26,13 +26,13 @@ jobs:
           echo "::set-output name=environments::$environments"
 
   cypress-run:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     needs: set-matrix
     strategy:
       matrix: ${{ fromJson(needs.set-matrix.outputs.environments) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2.3.4
       - name: Set CYPRESS_BASE_URL
         run: |
           case ${{ matrix.environment }} in
@@ -42,7 +42,7 @@ jobs:
           echo "CYPRESS_BASE_URL=https://${prefix}.apply-for-teacher-training.service.gov.uk" >> $GITHUB_ENV
 
       - name: Cypress run
-        uses: cypress-io/github-action@v1
+        uses: cypress-io/github-action@v2.3.10
         with:
           spec: cypress/integration/candidate.spec.js
         env:
@@ -51,10 +51,12 @@ jobs:
           CYPRESS_CANDIDATE_TEST_EMAIL: ${{ secrets.CANDIDATE_TEST_EMAIL }}
           CYPRESS_GOVUK_NOTIFY_API_KEY: ${{ secrets.GOVUK_NOTIFY_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Slack Notification
         if: failure()
         uses: rtCamp/action-slack-notify@master
         env:
+          SLACK_USERNAME: Apply Teacher Training
           SLACK_CHANNEL: 'twd_apply_tech'
           SLACK_COLOR: '#c0392b'
           SLACK_ICON_EMOJI: ':sad-beaver:'
