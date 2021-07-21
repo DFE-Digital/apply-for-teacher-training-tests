@@ -52,6 +52,16 @@ jobs:
           CYPRESS_GOVUK_NOTIFY_API_KEY: ${{ secrets.GOVUK_NOTIFY_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Upload Cypress screenshot and videos
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: smoke-test-${{ matrix.environment }}
+          path: |
+            cypress/videos
+            cypress/screenshots
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: Slack Notification
         if: failure()
         uses: rtCamp/action-slack-notify@master
