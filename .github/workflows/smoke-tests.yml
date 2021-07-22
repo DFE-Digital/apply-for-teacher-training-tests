@@ -36,10 +36,11 @@ jobs:
       - name: Set CYPRESS_BASE_URL
         run: |
           case ${{ matrix.environment }} in
-            production) prefix=www ;;
-            *) prefix=${{ matrix.environment }} ;;
+            production) CYPRESS_BASE_URL=https://www.apply-for-teacher-training.service.gov.uk ;;
+            research) CYPRESS_BASE_URL=https://apply-research.london.cloudapps.digital ;;
+            *) CYPRESS_BASE_URL=https://${{ matrix.environment }}.apply-for-teacher-training.service.gov.uk ;;
           esac
-          echo "CYPRESS_BASE_URL=https://${prefix}.apply-for-teacher-training.service.gov.uk" >> $GITHUB_ENV
+          echo "CYPRESS_BASE_URL=${CYPRESS_BASE_URL}" >> $GITHUB_ENV
 
       - name: Cypress run
         uses: cypress-io/github-action@v2.3.10
@@ -53,6 +54,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Cypress screenshot and videos
+        if:   always()
         uses: actions/upload-artifact@v2.2.4
         with:
           name: smoke-test-${{ matrix.environment }}
