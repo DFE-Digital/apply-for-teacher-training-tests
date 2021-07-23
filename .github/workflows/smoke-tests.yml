@@ -9,6 +9,9 @@ on:
       environment:
         description: Apply Teacher Training environment to run smoke tests against qa, staging, sandbox or production
         required: true
+      sha:
+        description: Commit sha from the apply-for-teacher-training repo that is triggering the test run
+        required: true
 
 jobs:
   set-matrix:
@@ -63,6 +66,18 @@ jobs:
             cypress/screenshots
           if-no-files-found: ignore
           retention-days: 7
+
+      - name: Post test run status to apply-for-teacher-training repo
+        if: ${{ always() && github.event_name == 'workflow_dispatch'}}
+        uses: Sibz/github-status-action@v1.1.5
+        with:
+          authToken: ${{ secrets.ACTIONS_API_ACCESS_TOKEN }}
+          state: ${{ job.status }}
+          context: smoke-test-${{ matrix.environment }}
+          description: smoke-test-${{ matrix.environment }}
+          repository: apply-for-teacher-training
+          sha: ${{ github.event.inputs.sha }}
+          target_url: https://github.com/DFE-Digital/apply-for-teacher-training-tests/actions/runs/${{ github.run_id }}
 
       - name: Slack Notification
         if: failure()
