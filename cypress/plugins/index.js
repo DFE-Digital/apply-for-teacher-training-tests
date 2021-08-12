@@ -39,7 +39,7 @@ const extractSignInLink = notifyEmail => notifyEmail.body.match(/https.*/)[0];
 module.exports = (on, config) => {
   const notifyClient = new NotifyClient(config.env["GOVUK_NOTIFY_API_KEY"]);
 
-  const getNotifyEmailFor = async (emailAddress, retries = 3) => {
+  const getNotifyEmailFor = async (emailAddress, retries = 5) => {
     const response = await notifyClient.getNotifications("email");
     const notifications = response.data.notifications;
     let notifyEmail = notifications.find(signInEmailFor(emailAddress));
