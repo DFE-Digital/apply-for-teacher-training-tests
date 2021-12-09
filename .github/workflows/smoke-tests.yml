@@ -41,6 +41,7 @@ jobs:
           case ${{ matrix.environment }} in
             production) CYPRESS_BASE_URL=https://www.apply-for-teacher-training.service.gov.uk ;;
             research) CYPRESS_BASE_URL=https://apply-research.london.cloudapps.digital ;;
+            review-*) CYPRESS_BASE_URL=https://apply-${{ matrix.environment }}.london.cloudapps.digital ;;
             *) CYPRESS_BASE_URL=https://${{ matrix.environment }}.apply-for-teacher-training.service.gov.uk ;;
           esac
           echo "CYPRESS_BASE_URL=${CYPRESS_BASE_URL}" >> $GITHUB_ENV
