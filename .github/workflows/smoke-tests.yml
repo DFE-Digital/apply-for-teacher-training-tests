@@ -81,7 +81,7 @@ jobs:
           target_url: https://github.com/DFE-Digital/apply-for-teacher-training-tests/actions/runs/${{ github.run_id }}
 
       - name: Slack Notification
-        if: failure()
+        if: failure() && ${{ !startsWith(matrix.environment, 'review-') }}
         uses: rtCamp/action-slack-notify@master
         env:
           SLACK_USERNAME: Apply Teacher Training
