@@ -38,10 +38,15 @@ jobs:
         uses: actions/checkout@v2.3.4
       - name: Set CYPRESS_BASE_URL
         run: |
+          REVIEW_ENVIRONMENT="false" >> $GITHUB_ENV
+
           case ${{ matrix.environment }} in
             production) CYPRESS_BASE_URL=https://www.apply-for-teacher-training.service.gov.uk ;;
             research) CYPRESS_BASE_URL=https://apply-research.london.cloudapps.digital ;;
-            review-*) CYPRESS_BASE_URL=https://apply-${{ matrix.environment }}.london.cloudapps.digital ;;
+            review-*) 
+              CYPRESS_BASE_URL=https://apply-${{ matrix.environment }}.london.cloudapps.digital 
+              REVIEW_ENVIRONMENT="true" >> $GITHUB_ENV
+            ;;
             *) CYPRESS_BASE_URL=https://${{ matrix.environment }}.apply-for-teacher-training.service.gov.uk ;;
           esac
           echo "CYPRESS_BASE_URL=${CYPRESS_BASE_URL}" >> $GITHUB_ENV
@@ -81,7 +86,7 @@ jobs:
           target_url: https://github.com/DFE-Digital/apply-for-teacher-training-tests/actions/runs/${{ github.run_id }}
 
       - name: Slack Notification
-        if: failure() && ${{ !startsWith(matrix.environment, 'review-') }}
+        if: ${{ failure() && (env.REVIEW_ENVIRONMENT == 'false') }}
         uses: rtCamp/action-slack-notify@master
         env:
           SLACK_USERNAME: Apply Teacher Training
