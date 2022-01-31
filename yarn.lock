@@ -142,12 +142,12 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.10.0.tgz#a17b3a8ea811060e74d47d306122400ad4497ae2"
   integrity sha512-3YDiu347mtVtjpyV3u5kVqQLP242c06zwDOgpeRnybmXlYYsLbtTrUBUm8i8srONt+FWobl5aibnU1030PeeuA==
 
-axios@^0.21.1:
-  version "0.21.1"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
-  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+axios@^0.25.0:
+  version "0.25.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.25.0.tgz#349cfbb31331a9b4453190791760a8d35b093e0a"
+  integrity sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==
   dependencies:
-    follow-redirects "^1.10.0"
+    follow-redirects "^1.14.7"
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -536,10 +536,10 @@ figures@^2.0.0:
   dependencies:
     escape-string-regexp "^1.0.5"
 
-follow-redirects@^1.10.0:
-  version "1.13.1"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.1.tgz#5f69b813376cee4fd0474a3aba835df04ab763b7"
-  integrity sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
+follow-redirects@^1.14.7:
+  version "1.14.7"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.7.tgz#2004c02eb9436eee9a21446a6477debf17e81685"
+  integrity sha512-+hbxoLbFMbRKDwohX8GkTataGqO6Jb7jGwpAlwgy2bIz25XtRm7KEzJM76R1WiNT5SwZkX4Y75SwBolkpmE7iQ==
 
 forever-agent@~0.6.1:
   version "0.6.1"
@@ -983,12 +983,12 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-notifications-node-client@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/notifications-node-client/-/notifications-node-client-5.1.0.tgz#975e6b604ac94600d873111b6ea7e452d6dd8fcd"
-  integrity sha512-a3aoSZPHSc/8VaccfGvKKsIZ/crqbglP9dNvg0pHHTgWi6BYiJc+Md7wOPizzEPACa+SKdifs06VY8ktbTzySA==
+notifications-node-client@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/notifications-node-client/-/notifications-node-client-5.1.1.tgz#d98ebf07828a6e999e29ccb180b9d0376faa3878"
+  integrity sha512-/Rutb/s7OLqIvsvgjPi6kVSu4nnEC5Hq1arB6fo219hAJOzkHJ+dJr1fMNIpDo7ubgf3hv5GFNzutPN54wIqOA==
   dependencies:
-    axios "^0.21.1"
+    axios "^0.25.0"
     jsonwebtoken "^8.2.1"
     underscore "^1.9.0"
 
